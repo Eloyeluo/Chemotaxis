@@ -17,7 +17,7 @@ void draw(){
     redBlood[j].traps();
     redBlood[j].show();
     redBlood[j].boundary();
-    if(get(redBlood[j].myX,redBlood[j].myY) == color(0,50,50)){
+    if(get(redBlood[j].myX,redBlood[j].myY) != color(150,0,0) || color(100,0,0) || color(50,0,0)){
       redBlood[j].notInfected= false; 
       }
     }
@@ -54,9 +54,9 @@ class Cell{ //red blood cells
     }
 }
   void show(){
-  fill(100,0,0);
   noStroke();
   if(notInfected){
+  	fill(100,0,0);
     ellipse(myX, myY, 10, 20);
     fill(50,0,0);
     ellipse(myX,myY, 5,10);
@@ -75,17 +75,17 @@ class Bacteria{ //bacteria
   }
    void movement(){
     if(mouseX > theirX){
-      theirX +=(int)(Math.random()*5);
+      theirX +=(int)(Math.random()*5) - 1;
       }
     else if(mouseX < theirX){
       theirX +=(int)(Math.random()*5)-5;
       }
     else if(mouseY > theirY){
-      theirY +=(int)(Math.random()*5);
+      theirY +=(int)(Math.random()*5) - 1;
       }
     else if(mouseY < theirY){
-    theirY +=(int)(Math.random()*5)-5;
-    }
+    	theirY +=(int)(Math.random()*5)-5;
+    	}
     }
   void show(){
   fill(0,50,50);
