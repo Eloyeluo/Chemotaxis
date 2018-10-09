@@ -1,15 +1,15 @@
 Cell [] redBlood;
 Bacteria [] bacterium;
 void setup(){
-size(800,800);
-redBlood = new Cell[1000];
-bacterium = new Bacteria[100];
-for(int i = 0; i < redBlood.length; i++){
-  redBlood[i] = new Cell();
-  }
-for(int i = 0; i < bacterium.length; i++){
-  bacterium[i] = new Bacteria();
-  }
+	size(800,800);
+	redBlood = new Cell[1000];
+	bacterium = new Bacteria[100];
+	for(int i = 0; i < redBlood.length; i++){
+ 	 redBlood[i] = new Cell();
+ 	 }
+	for(int i = 0; i < bacterium.length; i++){
+	  bacterium[i] = new Bacteria();
+	  }
 }
 void draw(){
   background(150,0,0);
@@ -17,9 +17,6 @@ void draw(){
     redBlood[j].traps();
     redBlood[j].show();
     redBlood[j].boundary();
-    if(get(redBlood[j].myX,redBlood[j].myY) != color(150,0,0) || color(100,0,0) || color(50,0,0)){
-      redBlood[j].notInfected= false; 
-      }
     }
   for(int j= 0; j < bacterium.length; j++){ //spawn bacteria
     bacterium[j].movement();
@@ -28,12 +25,13 @@ void draw(){
     }
 }
 class Cell{ //red blood cells
-  int myX, myY;
+  int myX, myY,myColor;
   boolean notInfected;
   Cell(){ //starting location
   myX = 400;
   myY = 400;
   notInfected = true;
+  myColor = color(100,0,0);
   }
   void traps(){
   myX += (int)(Math.random()*5)-2;
@@ -56,7 +54,7 @@ class Cell{ //red blood cells
   void show(){
   noStroke();
   if(notInfected){
-  	fill(100,0,0);
+  	fill(myColor);
     ellipse(myX, myY, 10, 20);
     fill(50,0,0);
     ellipse(myX,myY, 5,10);
@@ -75,16 +73,16 @@ class Bacteria{ //bacteria
   }
    void movement(){
     if(mouseX > theirX){
-      theirX +=(int)(Math.random()*5) - 1;
+      theirX +=(int)(Math.random()*4) - 1;
       }
     else if(mouseX < theirX){
-      theirX +=(int)(Math.random()*5)-5;
+      theirX +=(int)(Math.random()*4)-2;
       }
     else if(mouseY > theirY){
-      theirY +=(int)(Math.random()*5) - 1;
+      theirY +=(int)(Math.random()*4) - 1;
       }
     else if(mouseY < theirY){
-    	theirY +=(int)(Math.random()*5)-5;
+    	theirY +=(int)(Math.random()*4)-2;
     	}
     }
   void show(){
